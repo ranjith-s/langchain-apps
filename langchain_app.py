@@ -1,6 +1,7 @@
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain.tools import tool
 
 OLLAMA_BASE_URL = "http://localhost:11434"
 OLLAMA_MODEL = "qwen2.5:7b"
@@ -62,3 +63,23 @@ response = chain.invoke({
 })
 
 print(response)
+
+#Sample Tool
+@tool # Tool decorator or Tool annotation
+def get_order_status(order_id: int):
+    """
+    Tool description:
+
+    This tool gets the order status from database for the given order_id
+    """
+
+    # Implement the tool here
+    return "Delivered"
+
+@tool
+def create_refund_ticket():
+    return None
+
+@tool
+def initiat_refund():
+    return None
